@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 
-export const CreateEmployee = () => {
+export const CreateEmployee = ({isEditingMode,setisEditingMode, updatedId,setUpdatedId}) => {
   const [name, setName] = useState('');
   const [surname, setSurname] = useState('');
   const [email, setEmail] = useState('');
   const [position, setPosition] = useState('');
+
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -16,30 +17,53 @@ export const CreateEmployee = () => {
       position,
     };
 
-    fetch('https://rocky-temple-83495.herokuapp.com/employees', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(employee),
+    if (isEditingMode){
+      fetch(`https://rocky-temple-83495.herokuapp.com/employees/${updatedId}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(employee),
+  })
+    .then((response) => response.json())
+    .then((data) => {
     })
-      .then((response) => response.json())
-      .catch(({message}) => {
-        console.error(message);
-      });
+    .catch((error) => {
+      console.error(error);
+    });
 
+    setUpdatedId('')
     setName('');
-    setSurname('');
-    setEmail('');
-    setPosition('');
-  };
+  setSurname('');
+  setEmail('');
+  setPosition('');
+  setisEditingMode(!isEditingMode)
+} else { 
+  fetch('https://rocky-temple-83495.herokuapp.com/employees', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(employee),
+  })
+    .then((response) => response.json())
+    .catch(({message}) => {
+      console.error(message);
+    });
+  }
+  
+  setName('');
+  setSurname('');
+  setEmail('');
+  setPosition('');
+}
 
   return (
     <div style={{'marginTop': 100}}>
-      <h2> Create Employee </h2>
+      <h2> { isEditingMode? "Update Your Data ":"Create Employee "}</h2>
       <form onSubmit={handleSubmit}>
         <label > Name </label>
-        <input
+        <input 
           type="text"
           id="name"
           value={name}
@@ -70,7 +94,7 @@ export const CreateEmployee = () => {
           onChange={(event) => setPosition(event.target.value)}
         />
 
-        <button type="submit"> Create Employee </button>
+        <button style={{'marginLeft':20}} type="submit" value={isEditingMode}> { isEditingMode? "Update Employee": "Create Employee"} </button>
       </form>
     </div>
   );

@@ -2,7 +2,7 @@ import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import { Home } from "./components/Home";
 import { Employees } from "./components/employee/Employees";
-import { Tasks } from "./components/Tasks";
+import { Tasks } from "./components/tasks/Tasks";
 
 function App() {
   return (
