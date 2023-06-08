@@ -75,12 +75,12 @@ export const Tasks = () => {
             {tasks.map((row) => {
               return (
                 <StyledTableRow key={Math.random()}>
+
                   <StyledTableCell align="left" sx={{ width: "20%" }}>
                     <Typography>
-                      {" "}
-                      {row.id}{" "}
+                      {row.id}
                       <IconButton onClick={() => settaskProfileId(row.id)}>
-                        <Avatar>{row.name[0].toUpperCase()} </Avatar>
+                        <Avatar> {row.name? row.name[0].toUpperCase(): ''} </Avatar>
                       </IconButton>{" "}
                     </Typography>
                   </StyledTableCell>
@@ -138,5 +138,5 @@ export const Tasks = () => {
         taskUpdatedId={taskUpdatedId}
       />
     </div>
-  );
-};
+  )
+}

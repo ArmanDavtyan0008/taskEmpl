@@ -1,5 +1,5 @@
 import "./App.css";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import { Home } from "./components/Home";
 import { Employees } from "./components/employee/Employees";
 import { Tasks } from "./components/tasks/Tasks";
@@ -11,7 +11,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/employees" element={<Employees />} />
         <Route path="/tasks" element={<Tasks />} />
-        <Route path="*" element={<Home />} />
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </div>
   );
