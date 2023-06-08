@@ -14,6 +14,7 @@ export const Home = () => {
   }, [page])
   
   return (
+    <Box sx={{display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center'}}> 
     <Box sx={{...styles.homeMainBox}}>  
     <Description />
     <Box sx= {{display:'flex', justifyContent:'center', alignItems:'center', width:{sm:300,md:900,lg:1200, xl:1500},  mt:6 }} > 
@@ -26,5 +27,6 @@ export const Home = () => {
     </Link>
     </Box>
     </Box>
+   </Box>
   )
 }
