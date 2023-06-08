@@ -4,8 +4,8 @@ export const styles = {
     display: "flex",
     flexDirection: "column",
     justifyContent: 'center',
+     minWeight: '1200px',
     alignItems: 'center',
-    width: '100%',
     marginTop: 10,
   },
   buttonOne: {
