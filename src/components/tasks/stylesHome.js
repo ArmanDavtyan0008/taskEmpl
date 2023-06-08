@@ -2,6 +2,8 @@ export const styles = {
   homeMainBox: {
     display: "flex",
     flexDirection: "column",
+ justyfyContent: 'center',
+alignItems: 'center',
     width: { sm: 300, md: 900, lg: 1200, xl: 1500 },
     mt: 10,
   },
