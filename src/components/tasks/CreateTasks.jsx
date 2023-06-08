@@ -1,5 +1,5 @@
-import { MenuItem, Select } from '@mui/material';
 import React, { useEffect, useState } from 'react'
+import { Button, MenuItem, Select } from '@mui/material';
 
 export const CreateTasks = ({isTaskEditing,setIsTaskEditing,taskUpdatedId, setTaskUpdatedId}) => {
     const [data, setData] = useState([]);
@@ -9,17 +9,21 @@ export const CreateTasks = ({isTaskEditing,setIsTaskEditing,taskUpdatedId, setTa
     const [endDate, setEndDate] = useState('');
     const [description, setDescription] = useState('');
 
+
     useEffect(() => {
       fetch("https://rocky-temple-83495.herokuapp.com/employees")
         .then((res) => res.json())
         .then((res) => setData(res));
     }, []);
 
-    const handleSubmit = (event) => {
+    const handleSubmit =  (event) => {
       event.preventDefault();
-  
+   
+    const employee = data.find((emp) => emp.name === name);
+
       const task = {
         name,
+        // id: employee.id,
         id,
         startDate,
         endDate,
@@ -71,17 +75,17 @@ export const CreateTasks = ({isTaskEditing,setIsTaskEditing,taskUpdatedId, setTa
         <div style={{ marginTop: 100 }}>
         <h2> {isTaskEditing? 'Update Task': "Create Task"}</h2>
         <form onSubmit={handleSubmit}> 
-          <label style={{"marginRight":20}}> Name </label>
-          <Select style={{"width":40, 'height':40}} value={name} onChange={(event) => setName(event.target.value)}>
+          <label style={{"marginRight":20 }} > Name </label>
+          <Select style={{"width": 80 , 'height': 40}} value={name} onChange={(event) => setName(event.target.value)}>
             {data.map((emp) => (
-              <MenuItem key={Math.random()} value={emp.name} onChange={(e) => setName(e.target.value) } required>
+              <MenuItem key={Math.random()}  value={emp.name} onChange={(e) => setName(e.target.value) } required>
                 {emp.name}
               </MenuItem>
             ))}
           </Select>
 
 
-        <label > Start Date </label>
+        <label style={{'color':'#1976D2'}}> Start Date </label>
         <input
           type="date"
           value={startDate}
@@ -97,14 +101,15 @@ export const CreateTasks = ({isTaskEditing,setIsTaskEditing,taskUpdatedId, setTa
           required
         />
 
-        <label > Description </label>
+        <label style={{'color':'#1976D2'}} > Description </label>
         <input
+        required
           type="text"
           value={description}
           onChange={(event) => setDescription(event.target.value)}
         /> 
-        <button style={{"marginLeft":20}} type="submit"> { isTaskEditing ? "Update Task": "Create Task"} </button>
+        <Button sx={{width:100}} variant = 'contained'style={{"marginLeft":20}} type="submit"> { isTaskEditing ? "Update": "Create"} </Button>
       </form>
     </div>
     )
-  }
+    }

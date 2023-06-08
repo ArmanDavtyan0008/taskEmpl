@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Button } from '@mui/material';
 
 export const CreateEmployee = ({isEditingMode,setisEditingMode, updatedId,setUpdatedId}) => {
   const [name, setName] = useState('');
@@ -14,7 +15,7 @@ export const CreateEmployee = ({isEditingMode,setisEditingMode, updatedId,setUpd
       name,
       surname,
       email,
-      position,
+      position
     };
 
     if (isEditingMode){
@@ -32,8 +33,8 @@ export const CreateEmployee = ({isEditingMode,setisEditingMode, updatedId,setUpd
       console.error(error);
     });
 
-    setUpdatedId('')
-    setName('');
+  setUpdatedId('')
+  setName('');
   setSurname('');
   setEmail('');
   setPosition('');
@@ -60,41 +61,45 @@ export const CreateEmployee = ({isEditingMode,setisEditingMode, updatedId,setUpd
 
   return (
     <div style={{'marginTop': 100}}>
-      <h2> { isEditingMode? "Update Your Data ":"Create Employee "}</h2>
-      <form onSubmit={handleSubmit}>
-        <label > Name </label>
+      <h1 style={{"color": '#1976D2'}}> { isEditingMode? "Update Employee ":"Create Employee "}</h1>
+      <form onSubmit={handleSubmit} style={{"marginTop":50}}>
+        <label style={{'color':'#1976D2'}} > Name </label>
         <input 
+        required
           type="text"
           id="name"
           value={name}
           onChange={(event) => setName(event.target.value)}
         />
 
-        <label > Surname </label>
+        <label style={{'color':'#1976D2'}}> Surname </label>
         <input
+        required
           type="text"
           id="surname"
           value={surname}
           onChange={(event) => setSurname(event.target.value)}
         />
 
-        <label> Email </label>
+        <label style={{'color':'#1976D2'}}> Email </label>
         <input
+        required
           type="email"
           id="email"
           value={email}
           onChange={(event) => setEmail(event.target.value)}
         />
 
-        <label > Position </label>
+        <label style={{'color':'#1976D2'}}> Position </label>
         <input
+        required
           type="text"
           id="position"
           value={position}
           onChange={(event) => setPosition(event.target.value)}
         />
 
-        <button style={{'marginLeft':20}} type="submit" value={isEditingMode}> { isEditingMode? "Update Employee": "Create Employee"} </button>
+        <Button sx={{width:100}} variant = 'contained'style={{"marginLeft":20}} type="submit" value={isEditingMode}> { isEditingMode? "Update": "Create"} </Button>
       </form>
     </div>
   );
