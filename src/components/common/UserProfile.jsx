@@ -11,7 +11,7 @@ import { StyledTableCell, StyledTableRow } from "../employee/Employees";
 
 export const UserProfile = ({profileId,setProfileId,taskProfileId,settaskProfileId}) => {
 const [datas, setDatas] = React.useState([])
-// const [taskData, setTaskData] = React.useState([])
+const [taskData, setTaskData] = React.useState([])
 
 const handleStepBack = ()=> {
     profileId? setProfileId(''): settaskProfileId('') 
