@@ -11,6 +11,7 @@ export const CreateEmployee = ({isEditingMode,setisEditingMode, updatedId,setUpd
   const handleSubmit = (event) => {
     event.preventDefault();
 
+
     const employee = {
       name,
       surname,
@@ -27,8 +28,6 @@ export const CreateEmployee = ({isEditingMode,setisEditingMode, updatedId,setUpd
     body: JSON.stringify(employee),
   })
     .then((response) => response.json())
-    .then((data) => {
-    })
     .catch((error) => {
       console.error(error);
     });

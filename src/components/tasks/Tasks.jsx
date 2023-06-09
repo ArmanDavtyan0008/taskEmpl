@@ -54,10 +54,10 @@ export const Tasks = () => {
       settaskProfileId={settaskProfileId}
     />
   ) : (
-    <div>
+    <div >
       <Buttons />
       <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 700, mt: 8 }} aria-label="customized table">
+        <Table sx={{minWidth: 700, mt: 8 }} aria-label="customized table">
           <TableHead>
             <TableRow>
               <StyledTableCell sx={{ width: "20%" }}> ID </StyledTableCell>
