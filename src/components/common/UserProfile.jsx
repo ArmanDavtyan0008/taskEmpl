@@ -11,7 +11,7 @@ import { StyledTableCell, StyledTableRow } from "../employee/Employees";
 
 export const UserProfile = ({profileId,setProfileId,taskProfileId,settaskProfileId}) => {
 const [datas, setDatas] = React.useState([])
-// const [taskData, setTaskData] = React.useState([])
+const [taskData, setTaskData] = React.useState([])
 
 const handleStepBack = ()=> {
     profileId? setProfileId(''): settaskProfileId('') 
@@ -21,7 +21,8 @@ const handleStepBack = ()=> {
    fetch(`https://rocky-temple-83495.herokuapp.com/employees/${profileId}`)
    .then(res => res.json())
    .then(res => {
-    if (Array.isArray(res)) {
+    if (typeof res === 'object') {
+      console.log(res);
       setDatas(res);
     }
   })
@@ -38,8 +39,17 @@ const handleStepBack = ()=> {
 // useEffect(() => {
 //   fetch(`https://rocky-temple-83495.herokuapp.com/tasks?employeeId=${profileId}`)
 //   .then(res => res.json())
-// .then (res => setTaskData(res))
-// }, [])
+// .then (res => {
+//   console.log(res)
+//   let array = []
+//   array.push(res)
+//   setTaskData(array)
+// } )
+// console.log(taskData);
+// return () => {
+//   setTaskData([])
+// }
+// }, [profileId])
  
  useEffect(() => {
   console.log(profileId);
@@ -67,33 +77,29 @@ const handleStepBack = ()=> {
             </TableRow>
           </TableHead>
           <TableBody>
-            {datas.map((row) => {
-              return (
                 <StyledTableRow key={Math.random()}>
 
                   <StyledTableCell align="left" sx={{ width: "20%" }}>
-                    <Typography> {row.id} </Typography>
+                    <Typography> {datas.id} </Typography>
                   </StyledTableCell>
 
                   <StyledTableCell align="left" sx={{ width: "20%" }}>
-                    <Typography>{row.email}</Typography>
+                    <Typography>{datas.email}</Typography>
                   </StyledTableCell>
 
                   <StyledTableCell align="left" sx={{ width: "20%" }}>
-                    <Typography>{row.name}</Typography>
+                    <Typography>{datas.name}</Typography>
                   </StyledTableCell>
 
                   <StyledTableCell align="left" sx={{ width: "20%" }}>
-                    <Typography> {row.surname}</Typography>
+                    <Typography> {datas.surname}</Typography>
                   </StyledTableCell>
 
                   <StyledTableCell align="left" sx={{ width: "20%" }}>
-                      <Typography>{row.position}</Typography>
+                      <Typography>{datas.position}</Typography>
                   </StyledTableCell>
 
                 </StyledTableRow>
-              );
-            })}
           </TableBody>
         </Table>
       </TableContainer>
