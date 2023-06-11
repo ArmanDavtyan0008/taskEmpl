@@ -1,8 +1,8 @@
 {
-  "name": "employees-tasks",
+  "name": "taskEmpl",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://ArmanDavtyan0008.github.io/employees",
+  "homepage": "https://ArmanDavtyan0008.github.io/taskEmpl",
   "dependencies": {
     "@emotion/react": "^11.11.0",
     "@emotion/styled": "^11.11.0",
